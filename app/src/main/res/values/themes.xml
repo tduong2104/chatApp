@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ChatApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name= "colorPrimary">@color/waiting_bg</item>
+        <item name="colorPrimaryVariant">@color/waiting_bg</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- secondary color -->
+        <item name="colorSecondary">@color/main_bg</item>
+        <item name="colorSecondaryVariant">@color/main_bg</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- status bar-->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        
+        <item name="android:windowBackground">@color/off_white</item>
+    </style>
+
+    <style name="Theme.ChatApp" parent="Base.Theme.ChatApp" />
+</resources>
