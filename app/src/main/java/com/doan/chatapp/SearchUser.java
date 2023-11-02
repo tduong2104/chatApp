@@ -26,7 +26,7 @@ public class SearchUser extends AppCompatActivity {
         searchInput.requestFocus();
 
         backBtn.setOnClickListener(v -> {
-            getOnBackPressedDispatcher();
+            onBackPressed();
         });
 
         searchBtn.setOnClickListener(v -> {
