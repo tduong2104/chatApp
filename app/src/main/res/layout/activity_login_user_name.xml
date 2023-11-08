@@ -109,10 +109,12 @@
             android:backgroundTint="@color/main_bg"
             android:id="@+id/login_btn"/>
         <ProgressBar
+            android:id="@+id/login_progress_bar"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/black"
             android:layout_gravity="center"/>
+
     </LinearLayout>
 
 </LinearLayout>
