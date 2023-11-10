@@ -1,14 +1,15 @@
 package com.doan.chatapp.utils;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.FirebaseAuthException;
 
 public class Firebase {
 
     public static String currentUserId(){
-        return "";
+
+        return FirebaseAuth.getInstance() .getUid();
     }
     public static boolean isLoggedIn(){
         if (currentUserId() != null){
@@ -16,8 +17,8 @@ public class Firebase {
         }
         return false;
     }
-    public static DocumentReference currentUserDetail(){
-        return FirebaseFirestore.getInstance().collection("users").document();
+    public static DocumentReference currentUserDetails(){
+        return FirebaseFirestore.getInstance().collection("users").document(currentUserId());
     }
 
     public static CollectionReference allUserCollectionReference(){

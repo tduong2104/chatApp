@@ -1,6 +1,7 @@
 package com.doan.chatapp.Models;
 
-import java.sql.Timestamp;
+
+import com.google.firebase.Timestamp;
 
 public class UserModel {
     private String phone;
@@ -12,11 +13,11 @@ public class UserModel {
 
     }
 
-    public UserModel(String phone, String username, Timestamp createTimeStamp, String userID) {
+    public UserModel(String phone, String username, Timestamp createTimeStamp) {
         this.phone = phone;
         this.username = username;
         this.createTimeStamp = createTimeStamp;
-        this.UserID = userID;
+        //this.UserID = userID;
     }
 
     public String getPhone() {
