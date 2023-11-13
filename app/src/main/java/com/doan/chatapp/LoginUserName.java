@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.doan.chatapp.Models.UserModel;
-import com.doan.chatapp.utils.Firebase;
+import com.doan.chatapp.utils.FirebaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -47,7 +47,7 @@ public class LoginUserName extends AppCompatActivity {
 
     void getUsername(){
         setInProgress(true);
-        Firebase.currentUserDetails().get().addOnCompleteListener(task -> {
+        FirebaseUtil.currentUserDetails().get().addOnCompleteListener(task -> {
            setInProgress(false);
            if(task.isSuccessful()){
                 userModel = task.getResult().toObject(UserModel.class);
@@ -73,7 +73,7 @@ public class LoginUserName extends AppCompatActivity {
         else {
             userModel = new UserModel(phoneNumber, username, Timestamp.now());
         }
-        Firebase.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseUtil.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 setInProgress(false);

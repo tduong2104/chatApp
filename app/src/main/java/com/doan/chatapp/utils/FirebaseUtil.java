@@ -5,7 +5,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Firebase {
+public class FirebaseUtil {
 
     public static String currentUserId(){
 
@@ -23,5 +23,9 @@ public class Firebase {
 
     public static CollectionReference allUserCollectionReference(){
         return FirebaseFirestore.getInstance().collection("users");
+    }
+
+    public static void logout(){
+        FirebaseAuth.getInstance().signOut();
     }
 }

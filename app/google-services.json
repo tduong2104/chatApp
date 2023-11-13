@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "444079427201",
-    "project_id": "chatapp-88e60",
-    "storage_bucket": "chatapp-88e60.appspot.com"
+    "project_number": "866856790715",
+    "project_id": "chatapp-79efd",
+    "storage_bucket": "chatapp-79efd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:444079427201:android:2db2f173e2cdaa2883c780",
+        "mobilesdk_app_id": "1:866856790715:android:566d4b7b4b660a7d20179e",
         "android_client_info": {
           "package_name": "com.doan.chatapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCz8vFTVMI2CpAzmbtQKNiJMuHpM7CqP-k"
+          "current_key": "AIzaSyBOnTAsYcUem6k8ZTh7-bjnLkAWW1FerjI"
         }
       ],
       "services": {

@@ -10,10 +10,8 @@ import android.widget.ImageButton;
 
 import com.doan.chatapp.Adapter.SearchUserRecycleAdapter;
 import com.doan.chatapp.Models.UserModel;
-import com.doan.chatapp.utils.Firebase;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.doan.chatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class SearchUser extends AppCompatActivity {
@@ -51,7 +49,7 @@ public class SearchUser extends AppCompatActivity {
     }
 
     void setupSearchRecycleView(String searchTerm){
-        Query query = Firebase.allUserCollectionReference()
+        Query query = FirebaseUtil.allUserCollectionReference()
                 .whereGreaterThanOrEqualTo("username", searchTerm);
         FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
                 .setQuery(query,UserModel.class).build();

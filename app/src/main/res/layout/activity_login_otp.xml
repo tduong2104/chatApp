@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:text="NEXT"
             android:backgroundTint="@color/main_bg"
-            android:id="@+id/login_next_bnt"/>
+            android:id="@+id/login_next_btn"/>
         <ProgressBar
             android:layout_width="32dp"
             android:layout_height="wrap_content"

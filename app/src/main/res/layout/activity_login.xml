@@ -88,6 +88,7 @@
             android:layout_height="wrap_content"
             app:ccp_showFlag="true"
             app:ccp_showNameCode="false"
+            app:ccp_countryPreference="VN"
             android:id="@+id/login_countrycode"/>
 
         <EditText

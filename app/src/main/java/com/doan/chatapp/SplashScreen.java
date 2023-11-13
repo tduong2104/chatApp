@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.doan.chatapp.utils.Firebase;
+import com.doan.chatapp.utils.FirebaseUtil;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(Firebase.isLoggedIn()){
+                if(FirebaseUtil.isLoggedIn()){
                     startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 }
                 else {
