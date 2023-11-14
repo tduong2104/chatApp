@@ -24,25 +24,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        chatFragment = new ChatFragment();
-        profileFragment = new ProfileFragment();
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        searchButton = findViewById(R.id.main_search);
-
-        searchButton.setOnClickListener((v) -> {
-            startActivity(new Intent(MainActivity.this, SearchUser.class));
-        });
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener(){
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.menu_chat){
-                   getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, profileFragment).commit();
-                }
-                return true;
-            }
-        });
-        bottomNavigationView.setSelectedItemId(R.id.menu_chat);
     }
 }

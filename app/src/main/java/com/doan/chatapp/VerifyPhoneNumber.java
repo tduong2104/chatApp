@@ -1,16 +1,13 @@
 package com.doan.chatapp;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,61 +20,35 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-
 import java.util.concurrent.TimeUnit;
 
-
-public class Login_otp extends AppCompatActivity {
-    public static final String TAG = Login_otp.class.getName();
-    EditText inputOtp;
-    Button nextBtn;
-    TextView resendOtp;
+public class VerifyPhoneNumber extends AppCompatActivity {
+    static final String TAG = VerifyPhoneNumber.class.getName();
+    EditText phone_num;
+    Button sendOtpBtn;
     FirebaseAuth mAuth;
-    private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
-
-    String mPhoneNum;
-    String mVerificationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_otp);
+        setContentView(R.layout.activity_login);
 
-        getDataIntent();
-
-        inputOtp = findViewById(R.id.input_login_otp);
-        nextBtn = findViewById(R.id.login_next_btn);
-        resendOtp = findViewById(R.id.resend_Otp_Tv);
+        phone_num = findViewById(R.id.login_mobile_number);
+        sendOtpBtn = findViewById(R.id.send_otp_btn);
         mAuth = FirebaseAuth.getInstance();
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String strOtp = inputOtp.getText().toString().trim();
-                onClickNextBtn(strOtp);
-            }
+        sendOtpBtn.setOnClickListener((v) -> {
+            String strPhoneNum = phone_num.getText().toString().trim();
+            onClickSendOtp(strPhoneNum);
         });
-        resendOtp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickResendOtp();
-            }
-        });
-
     }
-
-    private void onClickNextBtn(String strOtp) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, strOtp);
-        signInWithPhoneAuthCredential(credential);
-    }
-
-    private void onClickResendOtp() {
+    private void onClickSendOtp(String strPhoneNum){
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(mPhoneNum)       // Phone number to verify
+                        .setPhoneNumber(strPhoneNum)       // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)
-                        .setForceResendingToken(mForceResendingToken)
+                        .setActivity(this)                 // (optional) Activity for callback binding
+                        // If no activity is passed, reCAPTCHA verification can not be used.
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -86,23 +57,18 @@ public class Login_otp extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(Login_otp.this, "Verification Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneNumber.this, "Verification Failed", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verificationId, forceResendingToken);
-                                mVerificationId = verificationId;
-                                mForceResendingToken = forceResendingToken;
+                                gotoLoginOtp(strPhoneNum, verificationId);
+
                             }
                         })
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-    }
-
-    void getDataIntent(){
-        mPhoneNum = getIntent().getStringExtra("phone_number");
-        mVerificationId = getIntent().getStringExtra("verificationId");
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -122,15 +88,21 @@ public class Login_otp extends AppCompatActivity {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
-                                Toast.makeText(Login_otp.this, "The verification code entered was invalid",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyPhoneNumber.this,
+                                        "The verification code entered was invalid",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 });
     }
+    private void gotoLoginOtp(String strPhoneNum, String verificationId) {
+        Intent intent = new Intent(this, Login_otp.class);
+        intent.putExtra("phone_number", strPhoneNum);
+        intent.putExtra("verificationId", verificationId);
+        startActivity(intent);
+    }
     private void gotoMainAct(String phoneNumber) {
-        Intent intent = new Intent(this, LoginUserName.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("phone_number", phoneNumber);
         startActivity(intent);
     }

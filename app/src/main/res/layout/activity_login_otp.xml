@@ -76,13 +76,6 @@
         android:textSize="20sp"
         android:layout_weight="5"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_weight="5">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,36 +86,26 @@
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
-            android:id="@+id/login_otp"/>
-    </LinearLayout>
+            android:id="@+id/input_login_otp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:layout_weight="10">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NEXT"
+            android:text="Next"
             android:backgroundTint="@color/main_bg"
             android:id="@+id/login_next_btn"/>
-        <ProgressBar
-            android:layout_width="32dp"
+        <TextView
+            android:id="@+id/resend_Otp_Tv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/black"
-            android:layout_gravity="center"
-            android:id="@+id/login_progress_bar"/>
-    </LinearLayout>
+            android:text="Resend OTP"
+            android:textStyle="italic"
+            android:padding="10dp"
+            android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Resend OTP in 30s"
-        android:gravity="center"
-        android:layout_weight="20"
-        android:id="@+id/resend_otp_text"/>
+
+
+
 
 </LinearLayout>

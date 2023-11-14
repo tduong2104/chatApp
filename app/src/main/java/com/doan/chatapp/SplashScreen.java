@@ -22,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 }
                 else {
-                    startActivity(new Intent(SplashScreen.this,Login.class));
+                    startActivity(new Intent(SplashScreen.this, VerifyPhoneNumber.class));
                 }
                 finish();
             }

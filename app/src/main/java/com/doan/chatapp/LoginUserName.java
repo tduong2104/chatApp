@@ -21,7 +21,6 @@ public class LoginUserName extends AppCompatActivity {
 
     EditText usernameInput;
     Button loginBtn;
-    ProgressBar progressBar;
     String phoneNumber;
     UserModel userModel;
 
@@ -32,7 +31,6 @@ public class LoginUserName extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.login_username);
         loginBtn = findViewById(R.id.login_btn);
-        progressBar = findViewById(R.id.login_progress_bar);
 
         phoneNumber = getIntent().getExtras().getString("phone");
         getUsername();
@@ -46,9 +44,7 @@ public class LoginUserName extends AppCompatActivity {
     }
 
     void getUsername(){
-        setInProgress(true);
         FirebaseUtil.currentUserDetails().get().addOnCompleteListener(task -> {
-           setInProgress(false);
            if(task.isSuccessful()){
                 userModel = task.getResult().toObject(UserModel.class);
                 if(userModel != null){
@@ -65,8 +61,6 @@ public class LoginUserName extends AppCompatActivity {
             return;
         }
 
-        setInProgress(true);
-
         if (userModel != null){
             userModel.setUsername(username);
         }
@@ -76,7 +70,6 @@ public class LoginUserName extends AppCompatActivity {
         FirebaseUtil.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                setInProgress(false);
                 if(task.isSuccessful()){
                     Intent intent = new Intent(LoginUserName.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -86,14 +79,4 @@ public class LoginUserName extends AppCompatActivity {
         });
     }
 
-    void setInProgress(boolean inProgress){
-        if(inProgress){
-            progressBar.setVisibility(View.VISIBLE);
-            loginBtn.setVisibility(View.GONE);
-        }
-        else {
-            progressBar.setVisibility(View.GONE);
-            loginBtn.setVisibility(View.VISIBLE);
-        }
-    }
 }
