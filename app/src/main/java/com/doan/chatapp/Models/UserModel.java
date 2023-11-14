@@ -4,28 +4,27 @@ package com.doan.chatapp.Models;
 import com.google.firebase.Timestamp;
 
 public class UserModel {
-    private String phone;
+    private String phoneNumber;
     private String username;
-    private Timestamp createTimeStamp;
-    private String UserID;
+    private Timestamp createdTimestamp;
+    private String userId;
+    private String fcmToken;
 
     public UserModel() {
-
     }
 
-    public UserModel(String phone, String username, Timestamp createTimeStamp) {
-        this.phone = phone;
+    public UserModel(String phoneNumber, String username, Timestamp createdTimestamp) {
+        this.phoneNumber = phoneNumber;
         this.username = username;
-        this.createTimeStamp = createTimeStamp;
-        //this.UserID = userID;
+        this.createdTimestamp = createdTimestamp;
     }
 
     public String getPhone() {
-        return phone;
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {
@@ -36,19 +35,27 @@ public class UserModel {
         this.username = username;
     }
 
-    public Timestamp getCreateTimeStamp() {
-        return createTimeStamp;
+    public Timestamp getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
-    public void setCreateTimeStamp(Timestamp createTimeStamp) {
-        this.createTimeStamp = createTimeStamp;
+    public void setCreatedTimestamp(Timestamp createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
-    public String getUserID() {
-        return UserID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserID(String userID) {
-        UserID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getFcmToken() {
+        return fcmToken;
+    }
+
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 }

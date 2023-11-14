@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneNumber extends AppCompatActivity {
     static final String TAG = VerifyPhoneNumber.class.getName();
-    EditText phone_num;
+    EditText phone;
     Button sendOtpBtn;
     FirebaseAuth mAuth;
 
@@ -33,12 +33,12 @@ public class VerifyPhoneNumber extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        phone_num = findViewById(R.id.login_mobile_number);
+        phone = findViewById(R.id.login_mobile_number);
         sendOtpBtn = findViewById(R.id.send_otp_btn);
         mAuth = FirebaseAuth.getInstance();
 
         sendOtpBtn.setOnClickListener((v) -> {
-            String strPhoneNum = phone_num.getText().toString().trim();
+            String strPhoneNum = phone.getText().toString().trim();
             onClickSendOtp(strPhoneNum);
         });
     }
@@ -64,7 +64,6 @@ public class VerifyPhoneNumber extends AppCompatActivity {
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verificationId, forceResendingToken);
                                 gotoLoginOtp(strPhoneNum, verificationId);
-
                             }
                         })
                         .build();
@@ -97,13 +96,13 @@ public class VerifyPhoneNumber extends AppCompatActivity {
     }
     private void gotoLoginOtp(String strPhoneNum, String verificationId) {
         Intent intent = new Intent(this, Login_otp.class);
-        intent.putExtra("phone_number", strPhoneNum);
+        intent.putExtra("phone", strPhoneNum);
         intent.putExtra("verificationId", verificationId);
         startActivity(intent);
     }
     private void gotoMainAct(String phoneNumber) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("phone_number", phoneNumber);
+        intent.putExtra("phone", phoneNumber);
         startActivity(intent);
     }
 }

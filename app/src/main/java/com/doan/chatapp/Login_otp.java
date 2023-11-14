@@ -101,7 +101,7 @@ public class Login_otp extends AppCompatActivity {
     }
 
     void getDataIntent(){
-        mPhoneNum = getIntent().getStringExtra("phone_number");
+        mPhoneNum = getIntent().getStringExtra("phone");
         mVerificationId = getIntent().getStringExtra("verificationId");
     }
 
@@ -116,7 +116,7 @@ public class Login_otp extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
                             // Update UI
-                            gotoMainAct(user.getPhoneNumber());
+                            gotoLoginUserName(user.getPhoneNumber());
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -129,9 +129,9 @@ public class Login_otp extends AppCompatActivity {
                     }
                 });
     }
-    private void gotoMainAct(String phoneNumber) {
+    private void gotoLoginUserName(String phoneNumber) {
         Intent intent = new Intent(this, LoginUserName.class);
-        intent.putExtra("phone_number", phoneNumber);
+        intent.putExtra("phone", phoneNumber);
         startActivity(intent);
     }
 }

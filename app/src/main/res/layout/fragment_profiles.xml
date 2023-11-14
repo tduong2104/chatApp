@@ -156,3 +156,4 @@
             android:backgroundTint="@color/main_bg"/>
     </RelativeLayout>
 </LinearLayout>
+

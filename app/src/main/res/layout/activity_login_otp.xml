@@ -81,13 +81,12 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:hint="OTP"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="6"
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
             android:id="@+id/input_login_otp"/>
-
 
         <Button
             android:layout_width="match_parent"
@@ -95,6 +94,7 @@
             android:text="Next"
             android:backgroundTint="@color/main_bg"
             android:id="@+id/login_next_btn"/>
+
         <TextView
             android:id="@+id/resend_Otp_Tv"
             android:layout_width="wrap_content"
@@ -103,9 +103,5 @@
             android:textStyle="italic"
             android:padding="10dp"
             android:layout_gravity="center"/>
-
-
-
-
 
 </LinearLayout>

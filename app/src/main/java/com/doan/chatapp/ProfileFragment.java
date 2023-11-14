@@ -3,16 +3,15 @@ package com.doan.chatapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.doan.chatapp.utils.FirebaseUtil;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends AppCompatActivity {
 
     ImageButton logoutBtn;
     ImageButton backBtn;
@@ -21,21 +20,26 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_profiles, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_profiles);
 
-        logoutBtn = view.findViewById(R.id.logout_btn);
+        logoutBtn = findViewById(R.id.logout_btn);
+        backBtn = findViewById(R.id.profile_back_btn);
 
         logoutBtn.setOnClickListener(v -> {
             FirebaseUtil.logout();
-            Intent intent = new Intent(getContext(),SplashScreen.class);
+            Intent intent = new Intent(this,SplashScreen.class);
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-
-        return view;
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 
